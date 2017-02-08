@@ -1,0 +1,20 @@
+hash: 0575474c351d5676d825441de9d29b692935873bad8702cc0aaec255bb134853
+updated: 2017-02-08T14:53:53.383455213+03:00
+imports:
+- name: github.com/forestgiant/sliceutil
+  version: 94783f95db6c58ab095b288839b769ca549dd4b4
+- name: github.com/go-macaron/inject
+  version: d8a0b8677191f4380287cfebd08e462217bac7ad
+- name: github.com/Unknwon/com
+  version: 28b053d5a2923b87ce8c5a08f3af779894a72758
+- name: golang.org/x/net
+  version: 236b8f043b920452504e263bc21d354427127473
+  subpackages:
+  - publicsuffix
+- name: gopkg.in/ini.v1
+  version: e3c2d47c61e5333f9aa2974695dd94396eb69c75
+- name: gopkg.in/macaron.v1
+  version: 78521e4647ad5dcbabd5734d94582ca2373cbad8
+- name: gopkg.in/resty.v0
+  version: 2e0c2310ba20c7edb6162ea2f6c0d5bba2e5e56d
+testImports: []
