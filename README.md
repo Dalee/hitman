@@ -1,4 +1,7 @@
-# Docker registry companion
+# Docker Registry Companion
+
+[![](https://images.microbadger.com/badges/image/dalee/hitman.svg)](https://microbadger.com/images/dalee/hitman "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/dalee/hitman.svg)](https://microbadger.com/images/dalee/hitman "Get your own version badge on microbadger.com")
 
 Companion tool for Private Docker Registry.
 
@@ -10,8 +13,8 @@ Companion tool for Private Docker Registry.
 
 ## Requirements
 
- * [Registry 2.6+](https://hub.docker.com/r/library/registry/tags/)
- * CLI access to host where Registry is running
+ * [Registry 2.6+](https://hub.docker.com/r/library/registry/tags/) (should be ok with `> 2.3` but untested)
+ * CLI access to host where Registry is running (run `garbage-collect` command)
 
 ## Prebuilt docker image
 
