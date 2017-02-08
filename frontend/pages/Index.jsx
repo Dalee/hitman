@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import AppLayout from "../containers/AppLayout";
+import App from "../containers/App";
 import Tree from "../components/Tree";
 import View from "../components/View";
 import {treeLoad} from "../actions/tree";
@@ -20,7 +20,7 @@ class Index extends React.Component {
     render() {
         const path = this.props.location.query.path || null;
         return (
-            <AppLayout>
+            <App>
                 <div className="pure-g">
                     <div className="pure-u-1-3 app-left-panel">
                         <Tree path={path}/>
@@ -29,12 +29,12 @@ class Index extends React.Component {
                         <View path={path}/>
                     </div>
                 </div>
-            </AppLayout>
+            </App>
         );
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         loadTree: () => dispatch(treeLoad()),
         loadView: (path) => dispatch(viewLoad(path))

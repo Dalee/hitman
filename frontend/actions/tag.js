@@ -1,27 +1,28 @@
-import {viewLoad} from "./view";
+import {viewLoad} from './view';
+import {
+    TAG_DELETED,
+    TAG_DELETE_ERROR
+} from '../constants/tag';
 
 export function tagDeleted(path, tag) {
     return {
-        type: 'TAG_DELETED',
-        image: {
-            path: path,
-            tag: tag
-        }
+        type: TAG_DELETED,
+        image: {path, tag}
     };
 }
 
-export function tagDeleteError(bool) {
+export function tagDeleteError(isError) {
     return {
-        type: 'TAG_DELETE_ERROR',
-        isError: bool
+        type: TAG_DELETE_ERROR,
+        isError
     };
 }
 
 export function deleteTag(path, tag) {
-    return (dispatch) => {
+    return dispatch => {
         try {
             fetch(`/delete?path=${path}&tag=${tag}`, {method: 'POST'})
-                .then((response) => {
+                .then(response => {
                     dispatch(tagDeleted(path, tag));
                     return response;
                 })

@@ -1,35 +1,41 @@
-export function viewLoading(bool) {
+import {
+    VIEW_LOADING,
+    VIEW_LOAD_ERROR,
+    VIEW_LOADED
+} from '../constants/view';
+
+export function viewLoading(isLoading) {
     return {
-        type: 'VIEW_LOADING',
-        isLoading: bool
+        type: VIEW_LOADING,
+        isLoading
     };
 }
 
-export function viewLoadError(bool) {
+export function viewLoadError(isError) {
     return {
-        type: 'VIEW_LOAD_ERROR',
-        isError: bool
+        type: VIEW_LOAD_ERROR,
+        isError
     };
 }
 
 export function viewLoaded(view) {
     return {
-        type: 'VIEW_LOADED',
-        view: view
+        type: VIEW_LOADED,
+        view
     };
 }
 
 export function viewLoad(path) {
-    return (dispatch) => {
+    return dispatch => {
         try {
             dispatch(viewLoading(true));
             fetch(`/image?path=${path}`)
-                .then((response) => {
+                .then(response => {
                     dispatch(viewLoading(false));
                     return response;
                 })
-                .then((data) => data.json())
-                .then((view) => dispatch(viewLoaded(view)));
+                .then(data => data.json())
+                .then(view => dispatch(viewLoaded(view)));
 
         } catch (e) {
             dispatch(viewLoadError(true));

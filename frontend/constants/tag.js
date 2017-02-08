@@ -1,0 +1,2 @@
+export const TAG_DELETED = 'TAG_DELETED';
+export const TAG_DELETE_ERROR = 'TAG_DELETE_ERROR';

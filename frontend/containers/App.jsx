@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-class AppLayout extends React.Component {
+class App extends React.Component {
     render() {
         return (
             <div>
@@ -19,4 +19,4 @@ class AppLayout extends React.Component {
     }
 }
 
-export default AppLayout;
+export default App;
