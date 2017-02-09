@@ -21,6 +21,7 @@ test: test-backend test-frontend
 # test frontend only
 test-frontend:
 	./node_modules/.bin/eslint frontend/
+	./node_modules/.bin/jest
 
 # test backend only
 test-backend:
