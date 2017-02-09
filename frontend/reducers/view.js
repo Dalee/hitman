@@ -1,6 +1,12 @@
+import {
+    VIEW_LOADING,
+    VIEW_LOAD_ERROR,
+    VIEW_LOADED
+} from '../constants/view';
+
 export function viewLoading(state = false, action) {
     switch (action.type) {
-        case 'VIEW_LOADING':
+        case VIEW_LOADING:
             return action.isLoading;
     }
     return state;
@@ -8,7 +14,7 @@ export function viewLoading(state = false, action) {
 
 export function viewLoadError(state = false, action) {
     switch (action.type) {
-        case 'VIEW_LOAD_ERROR':
+        case VIEW_LOAD_ERROR:
             return action.isError;
     }
     return state;
@@ -16,7 +22,7 @@ export function viewLoadError(state = false, action) {
 
 export function view(state = null, action) {
     switch (action.type) {
-        case 'VIEW_LOADED':
+        case VIEW_LOADED:
             return action.view;
     }
     return state;
