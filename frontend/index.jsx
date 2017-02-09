@@ -1,22 +1,25 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import {Router, Route, hashHistory} from "react-router";
-import {Provider} from "react-redux";
-import "./index.css";
-import configureStore from "./store/configureStore";
-import Index from "./pages/Index";
-import Error404 from "./pages/Error404";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import {Provider} from 'react-redux';
+import './index.css';
+import configureStore from './store/configureStore';
+import Layout from './components/Layout/Layout';
+import IndexPage from './containers/Pages/IndexPage';
+import ErrorPage404 from './components/Pages/ErrorPage404/ErrorPage404';
 
 const store = configureStore({
     treeLoading: true
 });
 
-ReactDOM.render((
-        <Provider store={store}>
-            <Router history={hashHistory}>
-                <Route path="/" component={Index}/>
-                <Route path="*" component={Error404}/>
-            </Router>
-        </Provider>
-    ), document.getElementById('app')
+ReactDOM.render(
+    <Provider store={store}>
+        <Router history={hashHistory}>
+            <Route path="/" component={Layout}>
+                <IndexRoute component={IndexPage} />
+                <Route path="*" component={ErrorPage404} />
+            </Route>
+        </Router>
+    </Provider>,
+    document.getElementById('app')
 );

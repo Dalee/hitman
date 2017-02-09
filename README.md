@@ -37,10 +37,10 @@ Where `docker.registry` is name of container running Docker Registry.
 
 ## Common pitfalls
 
- * There are no auth, so, restrict access to UI via frontend (NGINX `deny/allow` for example)
+ * There is no auth, so, restrict access to UI via frontend (NGINX `deny/allow` for example)
  * Multiple `tags` could point to single `digest`
  (you can have `latest` and `v1.0.1` tags, but they actually single image, so be careful)
- * Tag deletion will not frees you hard drive space until `garbage-collect` command is issued
+ * Tag deletion will not free you hard drive space until `garbage-collect` command is issued
  * Depending on storage driver, you may have to manually delete empty repositories (ui will show you hint)
 
 ## Licensing
@@ -62,7 +62,7 @@ $ npm install && glide install
 
 run server
 ```bash
-$ go run ./bin/main.go -registry-host=https://registry.example.com:5000/
+$ go run ./bin/main.go -registry-url=https://registry.example.com:5000/
 ```
 
 build ui (required after any jsx/css change):

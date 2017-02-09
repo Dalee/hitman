@@ -1,6 +1,16 @@
-import React from "react";
+import React from 'react';
 
-class AppLayout extends React.Component {
+/**
+ * Main layout
+ */
+class Layout extends React.Component {
+
+    static get propTypes() {
+        return {
+            children: React.PropTypes.node
+        };
+    }
+
     render() {
         return (
             <div>
@@ -16,7 +26,9 @@ class AppLayout extends React.Component {
                 </div>
             </div>
         );
+
     }
+
 }
 
-export default AppLayout;
+export default Layout;
