@@ -1,12 +1,9 @@
 language: go
-node_js:
-  - "6"
 go:
   - "1.7.x"
 
 before_install:
-  - npm -v
-  - go version
+  - nvm install 6
 
 install:
   - npm install
