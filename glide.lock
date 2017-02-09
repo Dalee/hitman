@@ -1,10 +1,12 @@
-hash: 0575474c351d5676d825441de9d29b692935873bad8702cc0aaec255bb134853
-updated: 2017-02-08T14:53:53.383455213+03:00
+hash: 94dbfe017c7ce36f66c45d9ff1f217eb9bfaa8be1360f510b5649ef2a4a881f9
+updated: 2017-02-09T13:11:25.900193161+03:00
 imports:
 - name: github.com/forestgiant/sliceutil
   version: 94783f95db6c58ab095b288839b769ca549dd4b4
 - name: github.com/go-macaron/inject
   version: d8a0b8677191f4380287cfebd08e462217bac7ad
+- name: github.com/stretchr/testify
+  version: 69483b4bd14f5845b5a1e55bca19e954e827f1d0
 - name: github.com/Unknwon/com
   version: 28b053d5a2923b87ce8c5a08f3af779894a72758
 - name: golang.org/x/net

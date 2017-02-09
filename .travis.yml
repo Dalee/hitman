@@ -1,0 +1,15 @@
+language: go
+node_js:
+  - "6"
+go:
+  - "1.7.x"
+
+before_install:
+  - npm -v
+  - go version
+
+install:
+  - npm install
+  - go get -u github.com/golang/lint/golint
+  - go get -u github.com/Masterminds/glide
+  - glide install
