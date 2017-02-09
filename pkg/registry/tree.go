@@ -86,6 +86,7 @@ func (leaf *RepositoryLeaf) addItem(item string) {
 		leaf.Images = append(leaf.Images, &RepositoryImage{
 			Path: leaf.formatPath(item),
 			Name: item,
+			Parent: leaf,
 		})
 	}
 }

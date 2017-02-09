@@ -1,0 +1,17 @@
+language: go
+go:
+  - "1.7.x"
+
+go_import_path: hitman
+
+before_install:
+  - nvm install 6
+
+install:
+  - npm install
+  - go get -u github.com/golang/lint/golint
+  - go get -u github.com/Masterminds/glide
+  - glide install
+
+script:
+  - make test
