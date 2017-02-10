@@ -3,6 +3,7 @@
 [![](https://images.microbadger.com/badges/image/dalee/hitman.svg)](https://microbadger.com/images/dalee/hitman "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/dalee/hitman.svg)](https://microbadger.com/images/dalee/hitman "Get your own version badge on microbadger.com")
 [![Build Status](https://travis-ci.org/Dalee/hitman.svg?branch=master)](https://travis-ci.org/Dalee/hitman)
+[![codecov](https://codecov.io/gh/Dalee/hitman/branch/master/graph/badge.svg)](https://codecov.io/gh/Dalee/hitman)
 
 Companion tool for Private Docker Registry.
 
