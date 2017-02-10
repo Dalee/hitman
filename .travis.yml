@@ -7,6 +7,11 @@ go_import_path: hitman
 before_install:
   - nvm install 6
 
+cache:
+  directories:
+    - node_modules
+    - vendor
+
 install:
   - npm install
   - go get -u github.com/modocache/gover
