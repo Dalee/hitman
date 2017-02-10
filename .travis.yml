@@ -7,11 +7,22 @@ go_import_path: hitman
 before_install:
   - nvm install 6
 
+cache:
+  directories:
+    - node_modules
+    - vendor
+
 install:
   - npm install
+  - go get -u github.com/modocache/gover
   - go get -u github.com/golang/lint/golint
   - go get -u github.com/Masterminds/glide
   - glide install
 
 script:
-  - make test
+  - go list -f '"go test -v -covermode=atomic -coverprofile={{.Dir}}/.coverprofile {{.ImportPath}}"' ./pkg/... | xargs -I % sh -c %
+  - gover ./ ./coverage.txt
+
+after_success:
+  - cat ./coverage.txt
+  - bash <(curl -s https://codecov.io/bash) -f ./coverage.txt
