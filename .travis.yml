@@ -20,4 +20,4 @@ script:
 
 after_success:
   - cat ./coverage.txt
-  - bash < (curl -s https://codecov.io/bash) -f ./coverage.txt
+  - bash <(curl -s https://codecov.io/bash) -f ./coverage.txt
