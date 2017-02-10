@@ -1,4 +1,11 @@
 
+#
+install:
+	go get -u github.com/modocache/gover
+	go get -u github.com/golang/lint/golint
+	go get -u github.com/Masterminds/glide
+
+
 # build and prepare new version
 docker:
 	mkdir -p ./build || true
@@ -6,8 +13,7 @@ docker:
 	./node_modules/.bin/webpack --optimize-minimize -p --progress
 	cp -fR ./public ./build/
 	rm ./build/public/.gitignore
-	cp -fR ./Dockerfile ./build/Dockerfile
-	docker build -f ./build/Dockerfile -t dalee/hitman:latest ./build/
+	docker build -t dalee/hitman:latest ./build/
 
 # test whole project
 test: test-backend test-frontend
@@ -20,6 +26,5 @@ test-frontend:
 test-backend:
 	golint ./bin/ ./pkg/
 	go test -v ./pkg/...
-
 
 .PHONY: test docker

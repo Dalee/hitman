@@ -9,9 +9,15 @@ before_install:
 
 install:
   - npm install
+  - go get -u github.com/modocache/gover
   - go get -u github.com/golang/lint/golint
   - go get -u github.com/Masterminds/glide
   - glide install
 
 script:
-  - make test
+  - go list -f '"go test -v -covermode=atomic -coverprofile={{.Dir}}/.coverprofile {{.ImportPath}}"' ./pkg/... | xargs -I % sh -c %
+  - gover ./ ./coverage.txt
+
+after_success:
+  # Send coverage reports to Codecov
+  - bash < (curl -s https://codecov.io/bash)
