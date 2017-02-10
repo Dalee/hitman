@@ -19,5 +19,5 @@ script:
   - gover ./ ./coverage.txt
 
 after_success:
-  # Send coverage reports to Codecov
-  - bash < (curl -s https://codecov.io/bash)
+  - cat ./coverage.txt
+  - bash < (curl -s https://codecov.io/bash) -f ./coverage.txt
