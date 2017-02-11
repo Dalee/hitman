@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import TreeLeaf from '../TreeLeaf/TreeLeaf';
+import ImageTreeLeaf from '../ImageTreeLeaf/ImageTreeLeaf';
 
-class Tree extends React.Component {
+class ImageTree extends React.Component {
 
     static get propTypes() {
         return {
@@ -10,7 +10,7 @@ class Tree extends React.Component {
             path: React.PropTypes.string,
             isError: React.PropTypes.bool,
             isLoading: React.PropTypes.bool,
-            tree: React.PropTypes.shape({
+            images: React.PropTypes.shape({
                 path: React.PropTypes.string,
                 name: React.PropTypes.string,
                 children: React.PropTypes.array,
@@ -22,7 +22,7 @@ class Tree extends React.Component {
         };
     }
 
-    renderTree(leaf = this.props.tree) {
+    renderTree(leaf = this.props.images) {
         const children = leaf.children || [];
 
         return (
@@ -30,7 +30,7 @@ class Tree extends React.Component {
                 <li className="tree-list-leaf">
                     <span>{leaf.name}</span>
                     {children.map(child => this.renderTree(child))}
-                    {leaf.images.length > 0 && <TreeLeaf images={leaf.images} loadView={this.props.loadView} />}
+                    {leaf.images.length > 0 && <ImageTreeLeaf images={leaf.images} loadView={this.props.loadView} />}
                 </li>
             </ul>
         );
@@ -43,7 +43,7 @@ class Tree extends React.Component {
             );
         }
 
-        if (this.props.tree) {
+        if (this.props.images) {
             return (
                 <div className="tree-list">
                     {this.renderTree()}
@@ -57,4 +57,4 @@ class Tree extends React.Component {
     }
 }
 
-export default Tree;
+export default ImageTree;

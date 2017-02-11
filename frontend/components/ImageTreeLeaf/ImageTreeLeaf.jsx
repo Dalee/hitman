@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
-class TreeLeaf extends React.Component {
+class ImageTreeLeaf extends React.Component {
 
     static get propTypes() {
         return {
@@ -29,7 +29,9 @@ class TreeLeaf extends React.Component {
                 {(this.props.images || []).map(image => {
                     return (
                         <li key={image.path} className="tree-list-image">
-                            <Link to={{pathname: '/', query: {path: image.path}}} onClick={this.onClick.bind(this, image.path)} activeClassName="active">
+                            <Link to={{pathname: '/', query: {path: image.path}}}
+                                  onClick={this.onClick.bind(this, image.path)}
+                                  activeClassName="active">
                                 {image.name}
                             </Link>
                         </li>
@@ -40,4 +42,4 @@ class TreeLeaf extends React.Component {
     }
 }
 
-export default TreeLeaf;
+export default ImageTreeLeaf;

@@ -1,9 +1,9 @@
 /**
  * @type {string}
  */
-export const TAG_DELETED = 'TAG_DELETED';
+export const REQUEST_DELETE_TAG = 'REQUEST_DELETE_TAG';
 
 /**
  * @type {string}
  */
-export const TAG_DELETE_ERROR = 'TAG_DELETE_ERROR';
+export const REQUEST_DELETE_TAG_ERROR = 'REQUEST_DELETE_TAG_ERROR';
