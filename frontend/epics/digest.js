@@ -8,6 +8,7 @@ export default function digest(action$) {
         .switchMap(path => {
             return ajax.getJSON(`/image?path=${path}`)
                 .map(response => receiveDigest(response))
+                // eslint-disable-next-line dot-notation
                 .catch(error => errorDigest());
         });
 }

@@ -7,6 +7,7 @@ export default function tree(action$) {
         .switchMap(() => {
             return ajax.getJSON('/tree')
                 .map(response => receiveImages(response))
+                // eslint-disable-next-line dot-notation
                 .catch(error => errorImages());
         });
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from './Layout';
+import Layout from '../../../components/Layout/Layout';
 import {shallow} from 'enzyme';
 
 describe('Layout', () => {
 
-    test('Renders children within', () => {
+    it('Renders children within', () => {
         const component = shallow(
             <Layout>
                 <h2 className="test_title">My new site</h2>

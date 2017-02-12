@@ -8,6 +8,7 @@ export default function digest(action$) {
         .switchMap(action => {
             return ajax.post(`/delete?path=${action.payload.path}&tag=${action.payload.tag}`)
                 .map(() => requestDigest(action.payload.path))
+                // eslint-disable-next-line dot-notation
                 .catch(error => errorTagDeletion());
         });
 }

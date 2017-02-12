@@ -1,25 +1,25 @@
 import React from 'react';
-import DigestList from './DigestList';
+import DigestList from '../../../components/DigestList/DigestList';
 import {shallow} from 'enzyme';
 
 describe('DigestList', () => {
 
-    test('Renders error is flag is passed', () => {
+    it('renders error is flag is passed', () => {
         const component = shallow(<DigestList isError />);
         expect(component.equals(<h2>Error :(</h2>)).toBe(true);
     });
 
-    test('Renders loading spinner is flag is passed', () => {
+    it('renders loading spinner is flag is passed', () => {
         const component = shallow(<DigestList isLoading />);
         expect(component.equals(<h2>Loading...</h2>)).toBe(true);
     });
 
-    test('Renders image selection request if it\'s not selected', () => {
+    it('renders image selection request if it\'s not selected', () => {
         const component = shallow(<DigestList />);
         expect(component.equals(<h2>Please select image</h2>)).toBe(true);
     });
 
-    test('Renders empty repository message with path', () => {
+    it('renders empty repository message with path', () => {
         const props = {
             digest: {children: []},
             path: 'dalee/repo'
@@ -30,7 +30,7 @@ describe('DigestList', () => {
         expect(component.text()).toMatch(registryPath);
     });
 
-    test('Renders children as DigestItem', () => {
+    it('renders children as DigestItem', () => {
         const props = {
             digest: {
                 children: [
