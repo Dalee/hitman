@@ -16,7 +16,7 @@ cache:
     - $HOME/.npm
 
 install:
-  - yarn
+  - yarn --pure-lockfile
   - yarn global add codecov
   - go get -u github.com/modocache/gover
   - go get -u github.com/golang/lint/golint
@@ -26,7 +26,7 @@ install:
 script:
   - go list -f '"go test -v -covermode=atomic -coverprofile={{.Dir}}/.coverprofile {{.ImportPath}}"' ./pkg/... | xargs -I % sh -c %
   - gover ./ ./coverage.txt
-  - ./node_modules/.bin/jest && codecov
+  - ./node_modules/.bin/jest --coverage && codecov
 
 after_success:
   - cat ./coverage.txt
