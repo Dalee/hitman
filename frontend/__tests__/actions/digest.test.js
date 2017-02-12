@@ -3,6 +3,7 @@ import {
     receiveDigest,
     errorDigest
 } from '../../actions/digest';
+
 import {
     REQUEST_DIGEST,
     REQUEST_DIGEST_ERROR,
@@ -12,10 +13,10 @@ import {
 describe('Digest actions', () => {
 
     it('requests digest', () => {
-        expect(requestDigest('/')).toMatchObject({
+        expect(requestDigest('some/path')).toMatchObject({
             type: REQUEST_DIGEST,
             payload: {
-                path: '/'
+                path: 'some/path'
             }
         });
     });
@@ -27,11 +28,19 @@ describe('Digest actions', () => {
     });
 
     it('receives digest', () => {
-        expect(receiveDigest('danone/dumsl')).toMatchObject({
+        const digest = {
+            children: [
+                {
+                    path: 'some/path',
+                    name: 'sha256:b7118c0e0609047e381faf8bb13dac2b0e81f61b65655c5d5540ec1cb319713d',
+                    tags: ['latest']
+                }
+            ]
+        };
+
+        expect(receiveDigest(digest)).toMatchObject({
             type: RECEIVE_DIGEST,
-            payload: {
-                digest: 'danone/dumsl'
-            }
+            payload: {digest}
         });
     });
 
