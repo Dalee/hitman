@@ -40,11 +40,11 @@ const config = {
         extensions: ['', '.js', '.jsx', '.css']
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
         new HtmlWebpackPlugin({
             template: 'frontend/index.html',
             hash: true

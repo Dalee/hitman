@@ -1,4 +1,5 @@
 import React from 'react';
+import {List, Label, Icon, Button, Grid} from 'semantic-ui-react';
 
 class DigestItem extends React.Component {
 
@@ -24,6 +25,26 @@ class DigestItem extends React.Component {
     }
 
     render() {
+        return (
+            <List.Item>
+                <List.Content>
+                    <Grid columns={2}>
+                        <Grid.Column  width={14}>
+                            <Label.Group color="blue" size="tiny">
+                                {this.props.tags.map(tag => <Label key={tag}><Icon name="tag" />{tag}</Label>)}
+                            </Label.Group>
+                            <List.Description>{this.props.name}</List.Description>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                            <Button color="red" icon="delete" size="mini" />
+                        </Grid.Column>
+                    </Grid>
+                </List.Content>
+            </List.Item>
+        );
+    }
+
+    __render() {
         return (
             <table className="pure-table pure-table-striped">
                 <tbody>

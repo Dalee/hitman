@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {connect} from 'react-redux';
+import {List} from 'semantic-ui-react';
 
 class ImageTreeLeaf extends React.Component {
 
@@ -25,21 +25,25 @@ class ImageTreeLeaf extends React.Component {
 
     render() {
         return (
-            <ul>
-                {(this.props.images || []).map(image => {
+            <List.List>
+                {this.props.images.map(image => {
                     return (
-                        <li key={image.path} className="tree-list-image">
-                            <Link to={{pathname: '/', query: {path: image.path}}}
-                                  onClick={this.onClick.bind(this, image.path)}
-                                  activeClassName="active">
-                                {image.name}
-                            </Link>
-                        </li>
+                        <List.Item key={image.path}>
+                            <List.Icon name="file" />
+                            <List.Content>
+                                <Link to={{pathname: '/', query: {path: image.path}}}
+                                      onClick={this.onClick.bind(this, image.path)}
+                                      activeClassName="active">
+                                    {image.name}
+                                </Link>
+                            </List.Content>
+                        </List.Item>
                     );
                 })}
-            </ul>
+            </List.List>
         );
     }
+
 }
 
 export default ImageTreeLeaf;

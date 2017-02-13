@@ -1,5 +1,6 @@
 import React from 'react';
 import DigestItem from '../DigestItem/DigestItem';
+import {Loader, List} from 'semantic-ui-react';
 
 class DigestList extends React.Component {
 
@@ -28,7 +29,7 @@ class DigestList extends React.Component {
 
         if (this.props.isLoading) {
             return (
-                <h2>Loading...</h2>
+                <Loader active inline="centered">Loading</Loader>
             );
         }
 
@@ -53,7 +54,7 @@ class DigestList extends React.Component {
         }
 
         return (
-            <div>
+            <List verticalAlign="middle" relaxed selection>
                 {this.props.digest.children.map(tagItem => {
                     return (
                         <DigestItem key={tagItem.name}
@@ -63,7 +64,7 @@ class DigestList extends React.Component {
                                       deleteTag={this.props.deleteTag} />
                     );
                 })}
-            </div>
+            </List>
         );
     }
 

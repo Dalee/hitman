@@ -1,4 +1,5 @@
 import React from 'react';
+import {Grid} from 'semantic-ui-react';
 
 /**
  * Main layout
@@ -14,16 +15,12 @@ class Layout extends React.Component {
     render() {
         return (
             <div>
-                <div className="header">
-                    <div className="pure-menu-horizontal">
-                        <span className="pure-menu-heading">Registry Browser</span>
-                    </div>
-                </div>
-                <div className="content-wrapper">
-                    <div className="content" style={{padding: "1em"}}>
-                        {this.props.children}
-                    </div>
-                </div>
+                <Grid padded>
+                    <Grid.Row color="black">
+                        <Grid.Column textAlign="left">Registry Browser</Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                {this.props.children}
             </div>
         );
 

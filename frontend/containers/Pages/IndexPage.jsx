@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {locationShape} from 'react-router';
 import ImageTree from '../../components/ImageTree/ImageTree';
 import DigestList from '../../components/DigestList/DigestList';
+import {Grid} from 'semantic-ui-react';
 
 import {requestImages} from '../../actions/images';
 import {requestDigest} from '../../actions/digest';
@@ -35,18 +36,18 @@ class IndexPage extends React.Component {
         const path = this.props.location.query.path;
 
         return (
-            <div className="pure-g">
-                <div className="pure-u-1-3 app-left-panel">
+            <Grid columns={2} padded>
+                <Grid.Column width={4}>
                     <ImageTree {...this.props.images}
-                          path={path}
-                          loadView={this.props.requestDigest} />
-                </div>
-                <div className="pure-u-2-3 app-right-panel">
+                               path={path}
+                               loadView={this.props.requestDigest} />
+                </Grid.Column>
+                <Grid.Column width={8}>
                     <DigestList {...this.props.digest}
-                                  path={path}
-                                  deleteTag={this.props.requestTagDeletion} />
-                </div>
-            </div>
+                                path={path}
+                                deleteTag={this.props.requestTagDeletion} />
+                </Grid.Column>
+            </Grid>
         );
     }
 }
