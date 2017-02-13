@@ -1,7 +1,7 @@
 import React from 'react';
-import ImageTagItem from '../ImageTagItem/ImageTagItem';
+import DigestItem from '../DigestItem/DigestItem';
 
-class ImageTagList extends React.Component {
+class DigestList extends React.Component {
 
     static get propTypes() {
         return {
@@ -9,7 +9,7 @@ class ImageTagList extends React.Component {
             path: React.PropTypes.string,
             isError: React.PropTypes.bool,
             isLoading: React.PropTypes.bool,
-            image: React.PropTypes.shape({
+            digest: React.PropTypes.shape({
                 children: React.PropTypes.arrayOf(React.PropTypes.shape({
                     path: React.PropTypes.string,
                     name: React.PropTypes.string,
@@ -32,13 +32,13 @@ class ImageTagList extends React.Component {
             );
         }
 
-        if (!this.props.image) {
+        if (!this.props.digest) {
             return (
                 <h2>Please select image</h2>
             );
         }
 
-        if (this.props.image.children.length === 0) {
+        if (this.props.digest.children.length === 0) {
             return (
                 <div>
                     <h2>Repository is empty</h2>
@@ -54,9 +54,9 @@ class ImageTagList extends React.Component {
 
         return (
             <div>
-                {this.props.image.children.map(tagItem => {
+                {this.props.digest.children.map(tagItem => {
                     return (
-                        <ImageTagItem key={tagItem.name}
+                        <DigestItem key={tagItem.name}
                                       name={tagItem.name}
                                       path={tagItem.path}
                                       tags={tagItem.tags}
@@ -69,4 +69,4 @@ class ImageTagList extends React.Component {
 
 }
 
-export default ImageTagList;
+export default DigestList;

@@ -1,20 +1,25 @@
 import {
-    TAG_DELETED,
-    TAG_DELETE_ERROR
+    REQUEST_DELETE_TAG,
+    REQUEST_DELETE_TAG_ERROR
 } from '../constants/tag';
 
-export function tagDeleted(state = false, action) {
-    switch (action.type) {
-        case TAG_DELETED:
-            return action.image;
-    }
-    return state;
-}
+const initialState = {
+    isError: false,
+    path: '',
+    tag: ''
+};
 
-export function tagDeleteError(state = false, action) {
+export default function tag(state = initialState, action) {
     switch (action.type) {
-        case TAG_DELETE_ERROR:
-            return action.isError;
+        case REQUEST_DELETE_TAG:
+            return Object.assign({}, state, action.payload, {
+                isError: false
+            });
+
+        case REQUEST_DELETE_TAG_ERROR:
+            return Object.assign({}, state, {
+                isError: true
+            });
     }
 
     return state;

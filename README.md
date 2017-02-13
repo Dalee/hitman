@@ -62,14 +62,19 @@ Setting up:
 $ npm install && glide install
 ```
 
-run server
+You can also you yarn instead:
+```bash
+$ yarn --pure-lockfile && glide install
+```
+
+Run server:
 ```bash
 $ go run ./bin/main.go -registry-url=https://registry.example.com:5000/
 ```
 
-build ui (required after any jsx/css change):
+Build ui (required after any jsx/css change):
 ```bash
-$ ./node_modules/.bin/webpack
+$ npm run build
 ```
 
 Point your browser to `http://localhost:4000/`

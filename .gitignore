@@ -5,3 +5,4 @@
 # match all cover profiles in every folder
 .coverprofile
 /coverage.txt
+/frontend-coverage

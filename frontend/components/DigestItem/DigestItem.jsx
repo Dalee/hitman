@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ImageTagItem extends React.Component {
+class DigestItem extends React.Component {
 
     static get propTypes() {
         return {
@@ -51,4 +51,4 @@ class ImageTagItem extends React.Component {
 
 }
 
-export default ImageTagItem;
+export default DigestItem;
