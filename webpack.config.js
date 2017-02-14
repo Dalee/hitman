@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
     entry: [
-        '!!style!css!purecss/build/pure-min.css',
         'whatwg-fetch',
         path.resolve(__dirname, 'frontend/index.jsx')
     ],

@@ -3,6 +3,15 @@ import {List, Label, Icon, Button, Grid} from 'semantic-ui-react';
 
 class DigestItem extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            deleteConfirm: false,
+            deleteInProgress: false
+        };
+    }
+
     static get propTypes() {
         return {
             path: React.PropTypes.string,
@@ -12,16 +21,27 @@ class DigestItem extends React.Component {
         };
     }
 
-    /**
-     * Dispatches item removal.
-     *
-     * @param {string} path
-     * @param {string} tag
-     */
-    onDeleteClick(path, tag) {
-        if (confirm(`Destroy tag: ${path}:${tag}?`)) {
-            this.props.deleteTag(path, tag);
-        }
+    onDeleteClick() {
+        // if (confirm(`Destroy tag: ${path}:${tag}?`)) {
+        //     this.props.deleteTag(path, tag);
+        // }
+
+        this.setState({deleteConfirm: true});
+    }
+
+    onCancelClick() {
+        this.setState({deleteConfirm: false});
+    }
+
+    onConfirmClick(path, tag) {
+        this.setState({deleteInProgress: true});
+
+        setTimeout(() => {
+            this.setState({
+                deleteInProgress: false,
+                deleteConfirm: false
+            });
+        }, 4000);
     }
 
     render() {
@@ -29,44 +49,31 @@ class DigestItem extends React.Component {
             <List.Item>
                 <List.Content>
                     <Grid columns={2}>
-                        <Grid.Column  width={14}>
+                        <Grid.Column width={13}>
                             <Label.Group color="blue" size="tiny">
                                 {this.props.tags.map(tag => <Label key={tag}><Icon name="tag" />{tag}</Label>)}
                             </Label.Group>
                             <List.Description>{this.props.name}</List.Description>
                         </Grid.Column>
-                        <Grid.Column width={1}>
-                            <Button color="red" icon="delete" size="mini" />
+                        <Grid.Column width={2}>
+                            {!this.state.deleteConfirm
+                                ? <Button onClick={this.onDeleteClick.bind(this)} color="red" icon="delete" size="mini" />
+                                : <Button.Group size="tiny">
+                                    <Button disabled={this.state.deleteInProgress}
+                                            onClick={this.onCancelClick.bind(this)}>
+                                        Cancel
+                                    </Button>
+                                    <Button.Or />
+                                    <Button loading={this.state.deleteInProgress}
+                                            onClick={this.onConfirmClick.bind(this, this.props.path, this.props.name)}
+                                            color="red">
+                                        Delete
+                                    </Button>
+                                </Button.Group>}
                         </Grid.Column>
                     </Grid>
                 </List.Content>
             </List.Item>
-        );
-    }
-
-    __render() {
-        return (
-            <table className="pure-table pure-table-striped">
-                <tbody>
-                    <tr>
-                        <td>
-                            <div className="tags">
-                                {this.props.tags.map(tag => <span key={tag}>{tag}</span>)}
-                            </div>
-                            <div className="digest">{this.props.name}</div>
-                        </td>
-                        <td style={{align: "center", width: "1em"}}>
-                            <button
-                                style={{color: "red"}}
-                                onClick={this.onDeleteClick.bind(this, this.props.path, this.props.name)}
-                                className="button-xsmall pure-button"
-                            >
-                                &#x2718;
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         );
     }
 
