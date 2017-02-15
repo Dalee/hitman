@@ -12,19 +12,19 @@ import {
 
 describe('Images\' actions', () => {
 
-    it('requests images', () => {
+    it('should requests images', () => {
         expect(requestImages()).toMatchObject({
             type: REQUEST_IMAGES
         });
     });
 
-    it('requests images error', () => {
+    it('should request images error', () => {
         expect(errorImages()).toMatchObject({
             type: REQUEST_IMAGES_ERROR
         });
     });
 
-    it('receives images', () => {
+    it('should receive images', () => {
         const images = {
             children: [],
             images: [],

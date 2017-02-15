@@ -10,7 +10,7 @@ import {
 
 describe('Tag actions', () => {
 
-    it('requests tag deletion', () => {
+    it('should request tag deletion', () => {
         expect(requestTagDeletion('some/path', 'latest')).toMatchObject({
             type: REQUEST_DELETE_TAG,
             payload: {
@@ -20,8 +20,8 @@ describe('Tag actions', () => {
         });
     });
 
-    it('requests tag deletion error', () => {
-        expect(errorTagDeletion('some/path', 'latest')).toMatchObject({
+    it('should request tag deletion error', () => {
+        expect(errorTagDeletion()).toMatchObject({
             type: REQUEST_DELETE_TAG_ERROR
         });
     });
