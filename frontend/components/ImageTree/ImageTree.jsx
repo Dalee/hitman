@@ -6,7 +6,7 @@ class ImageTree extends React.Component {
 
     static get propTypes() {
         return {
-            loadView: React.PropTypes.func,
+            loadView: React.PropTypes.func.isRequired,
             path: React.PropTypes.string,
             isError: React.PropTypes.bool,
             isLoading: React.PropTypes.bool,
@@ -37,7 +37,7 @@ class ImageTree extends React.Component {
                         </List.List>
                     }
                     {digests.length > 0 &&
-                        <ImageTreeLeaf images={leaf.images} loadView={this.props.loadView} />
+                        <ImageTreeLeaf length={digests.length} images={leaf.images} loadView={this.props.loadView} />
                     }
                 </List.Content>
             </List.Item>

@@ -9,7 +9,7 @@ Companion tool for Private Docker Registry.
 
 ## Features
 
- * Browse Registry
+ * Browse Registry ([Semantic React UI](http://react.semantic-ui.com/))
  * Delete images from Registry
  * more coming..
 

@@ -6,7 +6,7 @@ class ImageTreeLeaf extends React.Component {
 
     static get propTypes() {
         return {
-            loadView: React.PropTypes.func,
+            loadView: React.PropTypes.func.isRequired,
             images: React.PropTypes.arrayOf(React.PropTypes.shape({
                 path: React.PropTypes.string,
                 name: React.PropTypes.string
@@ -33,7 +33,7 @@ class ImageTreeLeaf extends React.Component {
                             <List.Content>
                                 <Link to={{pathname: '/', query: {path: image.path}}}
                                       onClick={this.onClick.bind(this, image.path)}
-                                      activeClassName="active">
+                                      activeStyle={{fontWeight: 'bold', color: 'black'}}>
                                     {image.name}
                                 </Link>
                             </List.Content>

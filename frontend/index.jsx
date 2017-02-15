@@ -8,6 +8,8 @@ import Layout from './components/Layout/Layout';
 import IndexPage from './containers/Pages/IndexPage';
 import ErrorPage404 from './components/Pages/ErrorPage404/ErrorPage404';
 
+import 'semantic-ui-css/semantic.min.css';
+
 const store = configureStore();
 
 ReactDOM.render(

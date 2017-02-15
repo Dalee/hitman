@@ -1,6 +1,7 @@
 import React from 'react';
 import DigestList from '../../../components/DigestList/DigestList';
 import {shallow} from 'enzyme';
+import {Loader} from 'semantic-ui-react';
 
 describe('DigestList', () => {
 
@@ -11,7 +12,7 @@ describe('DigestList', () => {
 
     it('renders loading spinner is flag is passed', () => {
         const component = shallow(<DigestList isLoading />);
-        expect(component.equals(<h2>Loading...</h2>)).toBe(true);
+        expect(component.equals(<Loader active inline="centered">Loading</Loader>)).toBe(true);
     });
 
     it('renders image selection request if it\'s not selected', () => {

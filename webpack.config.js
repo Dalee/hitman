@@ -2,11 +2,11 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
     entry: [
-        'whatwg-fetch',
         path.resolve(__dirname, 'frontend/index.jsx')
     ],
     module: {
@@ -17,17 +17,22 @@ const config = {
                 include: path.resolve(__dirname, 'frontend'),
                 exclude: '/node_modules/',
                 query: {
-                    presets: [
-                        'es2015',
-                        'react'
-                    ]
+                    presets: ['es2015', 'react']
                 }
             },
             {
                 test: /\.css$/,
-                include: path.resolve(__dirname, 'frontend'),
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
                 exclude: '/node_modules/',
-                loader: "style-loader!css-loader"
+                loader: 'file?name=fonts/[name].[ext]'
+            },
+            {
+                test: /\.(png)$/,
+                exclude: '/node_modules/',
+                loader: 'file?name=themes/default/assets/images/[name].[ext]'
             }
         ]
     },
@@ -39,6 +44,7 @@ const config = {
         extensions: ['', '.js', '.jsx', '.css']
     },
     plugins: [
+        new ExtractTextPlugin('bundle.css'),
         // new webpack.optimize.UglifyJsPlugin({
         //     compress: {
         //         warnings: false
