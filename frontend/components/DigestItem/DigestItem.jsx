@@ -21,25 +21,31 @@ class DigestItem extends React.Component {
         };
     }
 
-    onDeleteClick() {
-        this.setState({deleteConfirm: true});
+    /**
+     * Toggles confirmation box
+     *
+     * @param {boolean} confirmState
+     */
+    toggleConfirmation(confirmState = false) {
+        this.setState({deleteConfirm: confirmState});
     }
 
-    onCancelClick() {
-        this.setState({deleteConfirm: false});
-    }
-
+    /**
+     * Deletes digest
+     *
+     * @param {string} path
+     * @param {string} tag
+     */
     onConfirmClick(path, tag) {
         this.setState({deleteInProgress: true});
 
-        setTimeout(() => {
-            this.setState({
-                deleteInProgress: false,
-                deleteConfirm: false
+        this.props.deleteTag(path, tag)
+            .then(() => {
+                this.setState({
+                    deleteInProgress: false,
+                    deleteConfirm: false
+                });
             });
-        }, 4000);
-
-        // this.props.deleteTag(path, tag);
     }
 
     render() {
@@ -47,10 +53,10 @@ class DigestItem extends React.Component {
             <List.Item active={this.state.deleteConfirm}>
                     <List.Content floated="right">
                         {!this.state.deleteConfirm
-                            ? <Button onClick={this.onDeleteClick.bind(this)} color="red" icon="delete" size="mini" />
+                            ? <Button onClick={this.toggleConfirmation.bind(this, true)} color="red" icon="delete" size="mini" />
                             : <Button.Group size="tiny">
                                 <Button disabled={this.state.deleteInProgress}
-                                        onClick={this.onCancelClick.bind(this)}>
+                                        onClick={this.toggleConfirmation.bind(this, false)}>
                                     Cancel
                                 </Button>
                                 <Button.Or />
