@@ -3,11 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 import {Provider} from 'react-redux';
-import './index.css';
 import configureStore from './configureStore';
 import Layout from './components/Layout/Layout';
 import IndexPage from './containers/Pages/IndexPage';
 import ErrorPage404 from './components/Pages/ErrorPage404/ErrorPage404';
+
+import 'semantic-ui-css/semantic.min.css';
 
 const store = configureStore();
 

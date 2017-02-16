@@ -4,11 +4,23 @@ import {
     RECEIVE_DIGEST
 } from '../constants/digest';
 
+/**
+ * Initial state
+ *
+ * @type {{isLoading: boolean, isError: boolean}}
+ */
 const initialState = {
     isLoading: false,
     isError: false
 };
 
+/**
+ * Digest reducer
+ *
+ * @param {object} state
+ * @param {object} action
+ * @returns {object}
+ */
 export default function digest(state = initialState, action) {
     switch (action.type) {
         case REQUEST_DIGEST:

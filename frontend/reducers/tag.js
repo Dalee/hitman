@@ -3,12 +3,22 @@ import {
     REQUEST_DELETE_TAG_ERROR
 } from '../constants/tag';
 
+/**
+ * Initial state
+ *
+ * @type {{isError: boolean}}
+ */
 const initialState = {
-    isError: false,
-    path: '',
-    tag: ''
+    isError: false
 };
 
+/**
+ * Tag reducer
+ *
+ * @param state
+ * @param action
+ * @returns {*}
+ */
 export default function tag(state = initialState, action) {
     switch (action.type) {
         case REQUEST_DELETE_TAG:

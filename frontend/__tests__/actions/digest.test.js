@@ -12,7 +12,7 @@ import {
 
 describe('Digest actions', () => {
 
-    it('requests digest', () => {
+    it('should request digest', () => {
         expect(requestDigest('some/path')).toMatchObject({
             type: REQUEST_DIGEST,
             payload: {
@@ -21,13 +21,13 @@ describe('Digest actions', () => {
         });
     });
 
-    it('requests digest error', () => {
+    it('should request digest error', () => {
         expect(errorDigest()).toMatchObject({
             type: REQUEST_DIGEST_ERROR
         });
     });
 
-    it('receives digest', () => {
+    it('should receive digest', () => {
         const digest = {
             children: [
                 {

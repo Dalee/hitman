@@ -1,12 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import ImageTreeLeaf from '../ImageTreeLeaf/ImageTreeLeaf';
+import {List, Loader} from 'semantic-ui-react';
 
 class ImageTree extends React.Component {
 
     static get propTypes() {
         return {
-            loadView: React.PropTypes.func,
+            loadView: React.PropTypes.func.isRequired,
             path: React.PropTypes.string,
             isError: React.PropTypes.bool,
             isLoading: React.PropTypes.bool,
@@ -24,15 +24,23 @@ class ImageTree extends React.Component {
 
     renderTree(leaf = this.props.images) {
         const children = leaf.children || [];
+        const digests = leaf.images || [];
 
         return (
-            <ul key={leaf.path}>
-                <li className="tree-list-leaf">
-                    <span>{leaf.name}</span>
-                    {children.map(child => this.renderTree(child))}
-                    {leaf.images.length > 0 && <ImageTreeLeaf images={leaf.images} loadView={this.props.loadView} />}
-                </li>
-            </ul>
+            <List.Item key={leaf.path}>
+                <List.Icon name="folder" />
+                <List.Content>
+                    <List.Header>{leaf.name}</List.Header>
+                    {children.length > 0 &&
+                        <List.List>
+                            {children.map(child => this.renderTree(child))}
+                        </List.List>
+                    }
+                    {digests.length > 0 &&
+                        <ImageTreeLeaf length={digests.length} images={leaf.images} loadView={this.props.loadView} />
+                    }
+                </List.Content>
+            </List.Item>
         );
     }
 
@@ -45,14 +53,14 @@ class ImageTree extends React.Component {
 
         if (this.props.images) {
             return (
-                <div className="tree-list">
+                <List>
                     {this.renderTree()}
-                </div>
+                </List>
             );
         }
 
         return (
-            <h2>Loading</h2>
+            <Loader active inline="centered">Loading</Loader>
         );
     }
 }
