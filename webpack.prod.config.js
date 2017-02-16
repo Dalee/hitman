@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
+    devtool: 'cheap-module-source-map',
     entry: [
         path.resolve(__dirname, 'frontend/index.jsx')
     ],
@@ -44,7 +45,24 @@ const config = {
         extensions: ['', '.js', '.jsx', '.css']
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
         new ExtractTextPlugin('bundle.css'),
+        new webpack.optimize.UglifyJsPlugin({
+            beautify: false,
+            mangle: {
+                screw_ie8: true,
+                keep_fnames: true
+            },
+            compress: {
+                warnings: false,
+                screw_ie8: true
+            },
+            comments: false
+        }),
         new HtmlWebpackPlugin({
             template: 'frontend/index.html',
             hash: true
