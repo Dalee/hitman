@@ -21,21 +21,6 @@ describe('DigestItem', () => {
         expect(onButtonClick).toHaveBeenCalledWith('some/path', 'test');
     });
 
-    it('should restore state after removal', () => {
-        const promise = Promise.resolve();
-        const onButtonClick = jest.fn(() => promise);
-        const wrapper = shallow(<DigestItem path="some/path" name="test" tags={['latest']} deleteTag={onButtonClick} />);
-        wrapper.setState({deleteConfirm: true});
-        wrapper.find('Button').last().simulate('click');
-
-        return promise
-            .then(() => {
-                wrapper.update();
-                expect(wrapper.state('deleteInProgress')).toBe(false);
-                expect(wrapper.state('deleteConfirm')).toBe(false);
-            });
-    });
-
     it('should hide removal confirmation', () => {
         const wrapper = shallow(<DigestItem path="some/path" name="test" tags={['latest']} deleteTag={jest.fn()} />);
         wrapper.setState({deleteConfirm: true});
