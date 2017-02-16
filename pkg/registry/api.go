@@ -82,8 +82,8 @@ func (r *Registry) GetImageDigestList(path string) (*RepositoryDigestList, error
 	for _, digestKey := range digestOrder {
 		digestKeyList := digestTag[digestKey]
 		tag := &RepositoryDigest{
-			Name: digestKey,
-			Path: path,
+			Name:    digestKey,
+			Path:    path,
 			TagList: digestKeyList,
 		}
 		tagList.Children = append(tagList.Children, tag)
@@ -93,6 +93,6 @@ func (r *Registry) GetImageDigestList(path string) (*RepositoryDigestList, error
 }
 
 // delete digest from repository
-func (r *Registry) DeleteImageDigest(path, tag string) (error) {
+func (r *Registry) DeleteImageDigest(path, tag string) error {
 	return r.deleteDigest(path, tag)
 }

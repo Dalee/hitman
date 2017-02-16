@@ -21,7 +21,7 @@ func New(registryUrl string) *App {
 
 //
 func (app *App) RunForever(web *macaron.Macaron) {
-	go func (app *App) {
+	go func(app *App) {
 		app.loop()
 	}(app)
 	web.Run() // here we block..

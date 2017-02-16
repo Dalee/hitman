@@ -1,8 +1,8 @@
 package registry
 
 import (
-	"strings"
 	"fmt"
+	"strings"
 )
 
 type (
@@ -11,8 +11,8 @@ type (
 	}
 
 	RepositoryDigest struct {
-		Path    string `json:"path"`
-		Name    string `json:"name"`
+		Path    string   `json:"path"`
+		Name    string   `json:"name"`
 		TagList []string `json:"tags"`
 	}
 
@@ -21,17 +21,17 @@ type (
 	}
 
 	RepositoryImage struct {
-		Path   string `json:"path"`
-		Name   string `json:"name"`
+		Path   string          `json:"path"`
+		Name   string          `json:"name"`
 		Parent *RepositoryLeaf `json:"-"`
 	}
 
 	RepositoryLeaf struct {
-		Name     string `json:"name"`
-		Path     string `json:"path"`
+		Name     string             `json:"name"`
+		Path     string             `json:"path"`
 		Images   []*RepositoryImage `json:"images"`
-		Children []*RepositoryLeaf `json:"children"`
-		Parent   *RepositoryLeaf `json:"-"`
+		Children []*RepositoryLeaf  `json:"children"`
+		Parent   *RepositoryLeaf    `json:"-"`
 	}
 )
 
