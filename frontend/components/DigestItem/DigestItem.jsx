@@ -39,13 +39,7 @@ class DigestItem extends React.Component {
     onConfirmClick(path, tag) {
         this.setState({deleteInProgress: true});
 
-        this.props.deleteTag(path, tag)
-            .then(() => {
-                this.setState({
-                    deleteInProgress: false,
-                    deleteConfirm: false
-                });
-            });
+        this.props.deleteTag(path, tag);
     }
 
     render() {
