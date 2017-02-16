@@ -4,7 +4,7 @@ import {shallow} from 'enzyme';
 
 describe('Layout', () => {
 
-    it('Renders children within', () => {
+    it('should render children within', () => {
         const component = shallow(
             <Layout>
                 <h2 className="test_title">My new site</h2>
