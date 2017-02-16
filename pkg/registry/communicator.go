@@ -1,12 +1,12 @@
 package registry
 
 import (
-	"strings"
-	"fmt"
-	"gopkg.in/resty.v0"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"gopkg.in/resty.v0"
 	"sort"
+	"strings"
 )
 
 type (
@@ -61,7 +61,7 @@ func (r *Registry) getTagList(name string) (*tagListResponse, error) {
 }
 
 // delete digest from repository (one digest can refer to multiple tags)
-func (r *Registry) deleteDigest(name, digest string) (error) {
+func (r *Registry) deleteDigest(name, digest string) error {
 	deleteResp, err := r.reqDelete(fmt.Sprintf("%s/manifests/%s", name, digest))
 	if err != nil {
 		return err

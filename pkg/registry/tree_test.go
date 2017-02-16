@@ -1,8 +1,8 @@
 package registry
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 // ensure new tree works as expected
@@ -40,21 +40,21 @@ func TestAddItem(t *testing.T) {
 	tree.addItem("hello/world")
 	assert.Equal(t, len(tree.Children), 1, "Root leaf should exactly one child")
 
-	child1 := tree.Children[0];
+	child1 := tree.Children[0]
 	assert.Equal(t, child1.Name, "hello", "Leaf should have name 'hello'")
 	assert.Equal(t, child1.Path, "hello", "Leaf should have path 'hello'")
 	assert.Equal(t, child1.Parent, tree, "Leaf parent should be root leaf")
 	assert.Equal(t, len(child1.Images), 1, "Leaf should have one image")
 	assert.Equal(t, len(child1.Children), 0, "Leaf should not have any children")
 
-	image1 := child1.Images[0];
+	image1 := child1.Images[0]
 	assert.Equal(t, image1.Name, "world", "Image name should be 'world'")
 	assert.Equal(t, image1.Path, "hello/world", "Image path should be 'hello/world'")
 	assert.Equal(t, image1.Parent, child1, "Image parent should be child leaf")
 }
 
 // ensure findLeafByName works as expected
-func TestFindLeafByName(t *testing.T)  {
+func TestFindLeafByName(t *testing.T) {
 	tree := newTree()
 
 	tree.addItem("hello/world/sample_repo")
@@ -67,7 +67,7 @@ func TestFindLeafByName(t *testing.T)  {
 }
 
 // ensure findLeafByPath works as expected
-func TestFindLeafByPath(t *testing.T)  {
+func TestFindLeafByPath(t *testing.T) {
 	tree := newTree()
 
 	tree.addItem("hello/world/sample_repo")

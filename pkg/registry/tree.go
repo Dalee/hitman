@@ -7,10 +7,10 @@ import (
 // create new tree and initialize root leaf
 func newTree() *RepositoryLeaf {
 	return &RepositoryLeaf{
-		Parent: nil,
-		Path: "/",
-		Name: "/",
-		Images: make([]*RepositoryImage, 0),
+		Parent:   nil,
+		Path:     "/",
+		Name:     "/",
+		Images:   make([]*RepositoryImage, 0),
 		Children: make([]*RepositoryLeaf, 0),
 	}
 }
@@ -18,9 +18,9 @@ func newTree() *RepositoryLeaf {
 // create new leaf for a tree
 func (leaf *RepositoryLeaf) newLeaf(name string) *RepositoryLeaf {
 	child := &RepositoryLeaf{
-		Parent: leaf,
-		Name: name,
-		Images: make([]*RepositoryImage, 0),
+		Parent:   leaf,
+		Name:     name,
+		Images:   make([]*RepositoryImage, 0),
 		Children: make([]*RepositoryLeaf, 0),
 	}
 
@@ -34,7 +34,7 @@ func (leaf *RepositoryLeaf) newLeaf(name string) *RepositoryLeaf {
 // this method can return unexpected result
 func (leaf *RepositoryLeaf) findLeafByName(name string) *RepositoryLeaf {
 	if strings.Compare(leaf.Name, name) == 0 {
-		return leaf;
+		return leaf
 	}
 
 	for _, child := range leaf.Children {
@@ -42,19 +42,19 @@ func (leaf *RepositoryLeaf) findLeafByName(name string) *RepositoryLeaf {
 			return child
 		}
 
-		founded := child.findLeafByName(name);
+		founded := child.findLeafByName(name)
 		if founded != nil {
 			return founded
 		}
 	}
 
-	return nil;
+	return nil
 }
 
 // get leaf by provided path
 func (leaf *RepositoryLeaf) findLeafByPath(path string) *RepositoryLeaf {
 	if strings.Compare(leaf.Path, path) == 0 {
-		return leaf;
+		return leaf
 	}
 
 	for _, child := range leaf.Children {
@@ -62,13 +62,13 @@ func (leaf *RepositoryLeaf) findLeafByPath(path string) *RepositoryLeaf {
 			return child
 		}
 
-		founded := child.findLeafByPath(path);
+		founded := child.findLeafByPath(path)
 		if founded != nil {
 			return founded
 		}
 	}
 
-	return nil;
+	return nil
 }
 
 // add new group/image to tree
@@ -84,8 +84,8 @@ func (leaf *RepositoryLeaf) addItem(item string) {
 
 	} else {
 		leaf.Images = append(leaf.Images, &RepositoryImage{
-			Path: leaf.formatPath(item),
-			Name: item,
+			Path:   leaf.formatPath(item),
+			Name:   item,
 			Parent: leaf,
 		})
 	}
@@ -110,8 +110,8 @@ func (leaf *RepositoryLeaf) formatPath(imageName string) string {
 	}
 
 	// https://github.com/golang/go/wiki/SliceTricks
-	for i := len(pathSlice)/2-1; i >= 0; i-- {
-		opp := len(pathSlice)-1-i
+	for i := len(pathSlice)/2 - 1; i >= 0; i-- {
+		opp := len(pathSlice) - 1 - i
 		pathSlice[i], pathSlice[opp] = pathSlice[opp], pathSlice[i]
 	}
 
