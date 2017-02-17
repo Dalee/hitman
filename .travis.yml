@@ -19,7 +19,6 @@ install:
   - yarn --pure-lockfile
   - yarn global add codecov
   - go get -u github.com/modocache/gover
-  - go get -u github.com/golang/lint/golint
   - go get -u github.com/Masterminds/glide
   - glide install
 
@@ -29,6 +28,5 @@ script:
   - ./node_modules/.bin/jest --coverage
 
 after_success:
-  - cat ./coverage.txt
   - bash <(curl -s https://codecov.io/bash) -f ./coverage.txt
   - codecov

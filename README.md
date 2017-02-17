@@ -58,14 +58,15 @@ Software is licensed under the Apache License, Version 2.0. See LICENSE for the 
  * [glide](https://github.com/Masterminds/glide)
  * make
 
-Setting up:
+
+Setting up developer dependencies:
 ```bash
-$ npm install && glide install
+$ make install
 ```
 
 You can also you yarn instead:
 ```bash
-$ yarn --pure-lockfile && glide install
+$ yarn --pure-lockfile
 ```
 
 Run server:

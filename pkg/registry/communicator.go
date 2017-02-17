@@ -2,7 +2,6 @@ package registry
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"gopkg.in/resty.v0"
 	"sort"
@@ -67,8 +66,9 @@ func (r *Registry) deleteDigest(name, digest string) error {
 		return err
 	}
 
-	if deleteResp.StatusCode() != 202 {
-		return errors.New("Deleting not accepted by registry")
+	code := deleteResp.StatusCode()
+	if code != 202 {
+		return fmt.Errorf("Deletion request declined by registry with code: %d", code)
 	}
 
 	return nil
@@ -83,38 +83,38 @@ func (r *Registry) getManifestDigest(name, tag string) (string, error) {
 
 	digest := resp.Header().Get("Docker-Content-Digest")
 	if digest == "" {
-		return "", errors.New(fmt.Sprintf("Empty digest for: %s:%s", name, tag))
+		return "", fmt.Errorf("Empty digest for: %s:%s", name, tag)
 	}
 
 	return digest, nil
 }
 
 // DELETE helper
-func (r *Registry) reqDelete(requestUri string) (*resty.Response, error) {
-	requestUri = strings.TrimLeft(requestUri, "/")
-	requestUrl := fmt.Sprintf("%s/%s", r.url, requestUri)
+func (r *Registry) reqDelete(requestURI string) (*resty.Response, error) {
+	requestURI = strings.TrimLeft(requestURI, "/")
+	requestURL := fmt.Sprintf("%s/%s", r.url, requestURI)
 
 	return resty.R().
 		SetHeader("Accept", "application/vnd.docker.distribution.manifest.v2+json").
-		Delete(requestUrl)
+		Delete(requestURL)
 }
 
 // HEAD helper
-func (r *Registry) reqHead(requestUri string) (*resty.Response, error) {
-	requestUri = strings.TrimLeft(requestUri, "/")
-	requestUrl := fmt.Sprintf("%s/%s", r.url, requestUri)
+func (r *Registry) reqHead(requestURI string) (*resty.Response, error) {
+	requestURI = strings.TrimLeft(requestURI, "/")
+	requestURL := fmt.Sprintf("%s/%s", r.url, requestURI)
 
 	return resty.R().
 		SetHeader("Accept", "application/vnd.docker.distribution.manifest.v2+json").
-		Head(requestUrl)
+		Head(requestURL)
 }
 
 // GET helper
-func (r *Registry) reqGet(requestUri string) (*resty.Response, error) {
-	requestUri = strings.TrimLeft(requestUri, "/")
-	requestUrl := fmt.Sprintf("%s/%s", r.url, requestUri)
+func (r *Registry) reqGet(requestURI string) (*resty.Response, error) {
+	requestURI = strings.TrimLeft(requestURI, "/")
+	requestURL := fmt.Sprintf("%s/%s", r.url, requestURI)
 
 	return resty.R().
 		SetHeader("Accept", "application/vnd.docker.distribution.manifest.v2+json").
-		Get(requestUrl)
+		Get(requestURL)
 }

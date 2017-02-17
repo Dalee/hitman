@@ -5,7 +5,7 @@ import (
 	"hitman/pkg/application"
 )
 
-// return image tree
+// IndexHandler return repository tree
 func IndexHandler(ctx *macaron.Context, app *application.App) {
 	tree, err := app.Registry.GetTree(ctx.Query("path"))
 	if err != nil {
@@ -15,7 +15,7 @@ func IndexHandler(ctx *macaron.Context, app *application.App) {
 	}
 }
 
-// return list of tags
+// ImageHandler return contents for a given repository
 func ImageHandler(ctx *macaron.Context, app *application.App) {
 	tags, err := app.Registry.GetImageDigestList(ctx.Query("path"))
 	if err != nil {
@@ -25,7 +25,7 @@ func ImageHandler(ctx *macaron.Context, app *application.App) {
 	}
 }
 
-// delete digest for image
+// DeleteHandler delete digest from registry
 func DeleteHandler(ctx *macaron.Context, app *application.App) {
 	err := app.Registry.DeleteImageDigest(ctx.Query("path"), ctx.Query("tag"))
 	if err != nil {
