@@ -4,6 +4,10 @@ install:
 	go get -u github.com/modocache/gover
 	go get -u github.com/golang/lint/golint
 	go get -u github.com/Masterminds/glide
+	go get -u github.com/gordonklaus/ineffassign
+	go get -u github.com/client9/misspell/cmd/misspell
+	npm install
+	glide install
 
 
 # build and prepare new version
@@ -26,7 +30,13 @@ test-frontend:
 
 # test backend only
 test-backend:
-	golint ./bin/ ./pkg/
-	go test -v ./pkg/...
+	golint -set_exit_status ./pkg/... ./bin/...
+	ineffassign ./
+	misspell -error README.md ./pkg/**/* ./bin/**/*
+	gofmt -d -s -e ./bin/ ./pkg/
+	go test -covermode=atomic ./pkg/...
+
+format-backend:
+	gofmt -d -w -s -e ./bin/ ./pkg/
 
 .PHONY: test docker

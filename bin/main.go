@@ -1,13 +1,13 @@
 package main
 
 import (
-	"gopkg.in/macaron.v1"
-	"hitman/pkg/controllers"
-	"hitman/pkg/application"
-	"flag"
-	"os"
 	"errors"
+	"flag"
 	"fmt"
+	"gopkg.in/macaron.v1"
+	"hitman/pkg/application"
+	"hitman/pkg/controllers"
+	"os"
 )
 
 func main() {
@@ -28,14 +28,14 @@ func main() {
 	}
 
 	app := application.New(registryURL)
-	if app.Registry.IsValidUrl() == false {
+	if app.Registry.IsValidURL() == false {
 		panic(errors.New("Registry /v2/ request failed, check URL"))
 	}
 
 	m := macaron.New()
 	m.Use(macaron.Static("public", macaron.StaticOptions{
 		SkipLogging: true,
-		IndexFile: "index.html",
+		IndexFile:   "index.html",
 	}))
 	m.Use(macaron.Renderer())
 	m.Map(app)

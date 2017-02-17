@@ -1,13 +1,13 @@
 package registry
 
 import (
-	"errors"
 	"fmt"
 	"github.com/forestgiant/sliceutil"
 	"strings"
 )
 
-func (r *Registry) IsValidUrl() bool {
+// IsValidURL checks that provided registryURL is pointed to a registry v2
+func (r *Registry) IsValidURL() bool {
 	resp, err := r.reqHead("/") // actually is /v2/ request
 	if err != nil {
 		return false
@@ -25,7 +25,7 @@ func (r *Registry) IsValidUrl() bool {
 	return true
 }
 
-// return tree of repositories and images registered in registry
+// GetTree returns tree of repositories and images registered in registry
 func (r *Registry) GetTree(path string) (*RepositoryLeaf, error) {
 	resp, err := r.getCatalog()
 	if err != nil {
@@ -43,7 +43,7 @@ func (r *Registry) GetTree(path string) (*RepositoryLeaf, error) {
 	if path != "" {
 		leaf := tree.findLeafByPath(path)
 		if leaf == nil {
-			err = errors.New(fmt.Sprintf("Path: %s doesn't exists in tree", path))
+			err = fmt.Errorf("Path: %s doesn't exists in tree", path)
 		}
 		return leaf, err
 	}
@@ -51,7 +51,7 @@ func (r *Registry) GetTree(path string) (*RepositoryLeaf, error) {
 	return tree, nil
 }
 
-// return image information (tags are grouped by digest)
+// GetImageDigestList return image information (tags are grouped by digest)
 func (r *Registry) GetImageDigestList(path string) (*RepositoryDigestList, error) {
 	resp, err := r.getTagList(path)
 	if err != nil {
@@ -92,7 +92,7 @@ func (r *Registry) GetImageDigestList(path string) (*RepositoryDigestList, error
 	return tagList, nil
 }
 
-// delete digest from repository
+// DeleteImageDigest delete digest from repository
 func (r *Registry) DeleteImageDigest(path, tag string) error {
 	return r.deleteDigest(path, tag)
 }
