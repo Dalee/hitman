@@ -10,7 +10,7 @@ install:
 docker:
 	mkdir -p ./build || true
 	GOOS=linux GOARCH=amd64 go build -v -o ./build/hitman ./bin/main.go
-	./node_modules/.bin/webpack --optimize-minimize -p --progress
+	./node_modules/.bin/webpack --optimize-minimize -p --progress --config=./webpack.prod.config.js
 	cp -fR ./public ./build/
 	rm ./build/public/.gitignore
 	docker build -t dalee/hitman:latest ./build/
