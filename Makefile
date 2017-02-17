@@ -12,6 +12,7 @@ docker:
 	GOOS=linux GOARCH=amd64 go build -v -o ./build/hitman ./bin/main.go
 	./node_modules/.bin/webpack --optimize-minimize -p --progress --config=./webpack.prod.config.js
 	cp -fR ./public ./build/
+	cp -f ./Dockerfile ./build/Dockerfile
 	rm ./build/public/.gitignore
 	docker build -t dalee/hitman:latest ./build/
 
