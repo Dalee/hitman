@@ -1,5 +1,6 @@
 import React from 'react';
 import DigestList from '../../../components/DigestList/DigestList';
+import DigestItem from '../../../components/DigestItem/DigestItem';
 import {shallow} from 'enzyme';
 import {Loader} from 'semantic-ui-react';
 
@@ -42,7 +43,7 @@ describe('DigestList', () => {
         };
 
         const component = shallow(<DigestList {...props} />);
-        const foundItems = component.find('DigestItem');
+        const foundItems = component.find(DigestItem);
 
         expect(foundItems.length).toEqual(props.digest.children.length);
     });
