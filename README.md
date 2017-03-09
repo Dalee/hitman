@@ -1,12 +1,12 @@
-# Docker Registry Companion
+# Docker Distribution (Registry) UI
 
-[![](https://images.microbadger.com/badges/image/dalee/hitman.svg)](https://microbadger.com/images/dalee/hitman "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/dalee/hitman.svg)](https://microbadger.com/images/dalee/hitman "Get your own version badge on microbadger.com")
 [![Build Status](https://travis-ci.org/Dalee/hitman.svg?branch=master)](https://travis-ci.org/Dalee/hitman)
 [![codecov](https://codecov.io/gh/Dalee/hitman/branch/master/graph/badge.svg)](https://codecov.io/gh/Dalee/hitman)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Dalee/hitman)](https://goreportcard.com/report/github.com/Dalee/hitman)
+[![](https://images.microbadger.com/badges/image/dalee/hitman.svg)](https://microbadger.com/images/dalee/hitman "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/dalee/hitman.svg)](https://microbadger.com/images/dalee/hitman "Get your own version badge on microbadger.com")
 
-Companion tool for Private Docker Registry.
+Web UI for Private Docker Distribution (Registry).
 
 ## Features
 
@@ -74,16 +74,18 @@ Run server:
 $ go run ./bin/main.go -registry-url=https://registry.example.com:5000/
 ```
 
-Build ui (required after any jsx/css change):
+Full list of commands:
+ * `make docker` - build docker image
+ * `make install` — install all development dependencies
+ * `make format-backend` — gofmt sources
+ * `make test` — test backend and frontend code
+ * `make test-backend` — test backend sources
+ * `make test-frontend` — test frontend sources
+ * `make coverage-backend ; go tool cover -html=coverage.txt` — display backend coverage
+
+Build UI (required after any jsx/css change):
 ```bash
 $ npm run build
 ```
 
 Point your browser to `http://localhost:4000/`
-
-## Release new version
-
-```
-$ make docker
-$ docker tag dalee/hitman:latest dalee/hitman:v1.x
-```
