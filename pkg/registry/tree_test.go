@@ -60,10 +60,22 @@ func TestFindLeafByName(t *testing.T) {
 	tree.addItem("hello/world/sample_repo")
 	assert.Equal(t, len(tree.Children), 1, "Root leaf should exactly one child")
 
+	root := tree.findLeafByName("hello")
+	assert.NotNil(t, root)
+	assert.Equal(t, root.Name, "hello")
+	assert.Equal(t, root.Path, "hello")
+
+	same := root.findLeafByName("hello")
+	assert.NotNil(t, same)
+	assert.Equal(t, root, same)
+
 	child := tree.findLeafByName("world")
 	assert.NotNil(t, child)
 	assert.Equal(t, child.Name, "world")
 	assert.Equal(t, child.Path, "hello/world")
+
+	missed := tree.findLeafByName("missed")
+	assert.Nil(t, missed)
 }
 
 // ensure findLeafByPath works as expected
@@ -73,8 +85,20 @@ func TestFindLeafByPath(t *testing.T) {
 	tree.addItem("hello/world/sample_repo")
 	assert.Equal(t, len(tree.Children), 1, "Root leaf should exactly one child")
 
+	root := tree.findLeafByPath("hello")
+	assert.NotNil(t, root)
+	assert.Equal(t, root.Name, "hello")
+	assert.Equal(t, root.Path, "hello")
+
+	same := root.findLeafByPath("hello")
+	assert.NotNil(t, same)
+	assert.Equal(t, root, same)
+
 	child := tree.findLeafByPath("hello/world")
 	assert.NotNil(t, child)
 	assert.Equal(t, child.Name, "world")
 	assert.Equal(t, child.Path, "hello/world")
+
+	missed := tree.findLeafByPath("missed")
+	assert.Nil(t, missed)
 }
