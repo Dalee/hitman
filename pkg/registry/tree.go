@@ -33,7 +33,7 @@ func (leaf *RepositoryLeaf) newLeaf(name string) *RepositoryLeaf {
 // find leaf by name, beware, if start searching from /
 // this method can return unexpected result
 func (leaf *RepositoryLeaf) findLeafByName(name string) *RepositoryLeaf {
-	if strings.Compare(leaf.Name, name) == 0 {
+	if leaf.Name == name {
 		return leaf
 	}
 
@@ -53,7 +53,7 @@ func (leaf *RepositoryLeaf) findLeafByName(name string) *RepositoryLeaf {
 
 // get leaf by provided path
 func (leaf *RepositoryLeaf) findLeafByPath(path string) *RepositoryLeaf {
-	if strings.Compare(leaf.Path, path) == 0 {
+	if leaf.Path == path {
 		return leaf
 	}
 
@@ -110,7 +110,7 @@ func (leaf *RepositoryLeaf) formatPath(imageName string) string {
 	}
 
 	// https://github.com/golang/go/wiki/SliceTricks
-	for i := len(pathSlice)/2 - 1; i >= 0; i-- {
+	for i := len(pathSlice) / 2 - 1; i >= 0; i-- {
 		opp := len(pathSlice) - 1 - i
 		pathSlice[i], pathSlice[opp] = pathSlice[opp], pathSlice[i]
 	}

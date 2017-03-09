@@ -1,7 +1,7 @@
 import 'rxjs';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import configureStore from './configureStore';
 import Layout from './components/Layout/Layout';
@@ -14,7 +14,7 @@ const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
             <Route path="/" component={Layout}>
                 <IndexRoute component={IndexPage} />
                 <Route path="*" component={ErrorPage404} />

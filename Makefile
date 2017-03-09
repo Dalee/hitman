@@ -36,6 +36,10 @@ test-backend:
 	gofmt -d -s -e ./bin/ ./pkg/
 	go test -covermode=atomic ./pkg/...
 
+coverage-backend:
+	go list -f '"go test -covermode=atomic -coverprofile={{.Dir}}/.coverprofile {{.ImportPath}}"' ./pkg/... | xargs -I % sh -c %
+	gover ./pkg/ ./coverage.txt
+
 format-backend:
 	gofmt -d -w -s -e ./bin/ ./pkg/
 

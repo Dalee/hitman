@@ -7,7 +7,9 @@ import (
 	"gopkg.in/macaron.v1"
 	"hitman/pkg/application"
 	"hitman/pkg/controllers"
+	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -40,10 +42,23 @@ func main() {
 	m.Use(macaron.Renderer())
 	m.Map(app)
 
-	// define routes
+	// api routes
 	m.Get("/tree", controllers.IndexHandler)
 	m.Get("/image", controllers.ImageHandler)
 	m.Post("/delete", controllers.DeleteHandler)
+
+	// catch-all-route
+	m.Get("/", func(ctx *macaron.Context) {
+		file, _ := filepath.Abs("public/index.html")
+		data, err := ioutil.ReadFile(file)
+		if err != nil {
+			ctx.Error(500, err.Error())
+			return
+		}
+
+		ctx.Header().Set("Content-Type", "text/html; encoding=utf-8")
+		ctx.Resp.Write(data)
+	})
 
 	app.RunForever(m)
 }
