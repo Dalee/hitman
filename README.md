@@ -75,7 +75,7 @@ $ go run ./bin/main.go -registry-url=https://registry.example.com:5000/
 ```
 
 Full list of commands:
- * `make docker` - build docker image
+ * `make docker` — build docker image
  * `make install` — install all development dependencies
  * `make format-backend` — gofmt sources
  * `make test` — test backend and frontend code
