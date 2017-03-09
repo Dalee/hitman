@@ -110,7 +110,7 @@ func (leaf *RepositoryLeaf) formatPath(imageName string) string {
 	}
 
 	// https://github.com/golang/go/wiki/SliceTricks
-	for i := len(pathSlice) / 2 - 1; i >= 0; i-- {
+	for i := len(pathSlice)/2 - 1; i >= 0; i-- {
 		opp := len(pathSlice) - 1 - i
 		pathSlice[i], pathSlice[opp] = pathSlice[opp], pathSlice[i]
 	}
