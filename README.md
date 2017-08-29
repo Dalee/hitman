@@ -64,7 +64,7 @@ Setting up developer dependencies:
 $ make install
 ```
 
-You can also you yarn instead:
+You can also use yarn instead of npm:
 ```bash
 $ yarn --pure-lockfile
 ```
